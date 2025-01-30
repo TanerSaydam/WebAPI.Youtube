@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Product List</h1>    
+    <button onclick="getRequest()">Api isteği yap</button>
+
+    <hr>
+    <ul>
+
+    </ul>
+
+    <script>
+        async function getRequest(){
+            const ulEl = document.querySelector("ul");
+            const h1El = document.querySelector("h1");
+            h1El.innerText = "Loading...";
+            let text = "";
+            const res = await fetch("https://test.webapi.ecnorow.com/api/Products").then(c => c.json());
+            res.forEach(val => {
+                text += `<li>${val.name}</li>`
+            });
+
+            ulEl.innerHTML = text;        
+            
+            
+            h1El.innerText = "Product List";
+        }
+    </script>
+</body>
+</html>
